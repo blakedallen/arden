@@ -8,7 +8,7 @@ An adaptive realtime detection and examination network system,
 - Visual Classification (dogs, lost children, liscence plate, surfers, etc.)
 - Sharpening
 - Comparison to uploaded image
-- Alert to user on located 
+- Alert user to located coordinates
 
 
 ## Jira
