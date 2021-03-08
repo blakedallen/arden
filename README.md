@@ -10,6 +10,11 @@ An adaptive realtime detection and examination network system,
 - Comparison to uploaded image
 - Alert user to located coordinates
 
+## Edge setup
+dji - drone with video
+use phone wifi hotspot
+use battery
+Jetson NX 
 
 ## Jira
 https://w251-arden.atlassian.net/secure/RapidBoard.jspa?rapidView=1&projectKey=WA&selectedIssue=WA-10
