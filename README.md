@@ -5,8 +5,10 @@ Adaptive Realtime Detection and Examination Network
 
 An adaptive realtime detection and examination network system, 
 - Edge deployment
-- Classification
+- Visual Classification (dogs, lost children, liscence plate, surfers, etc.)
 - Sharpening
+- Comparison to uploaded image
+- Alert to user on located 
 
 
 ## Jira
