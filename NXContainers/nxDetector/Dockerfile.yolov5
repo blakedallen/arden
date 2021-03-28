@@ -17,6 +17,7 @@ WORKDIR /usr/src/app/yolov5
 RUN apt-get update
 RUN apt-get install python3-pip idle3 -y
 RUN pip3 install --no-cache-dir --upgrade pip
+RUN apt-get install vim
 
 # Install dependencies (pip or conda)
 # RUN pip3 install -r requirements.txt
