@@ -41,5 +41,5 @@ RUN pip3 install git+https://github.com/cocodataset/cocoapi.git#subdirectory=Pyt
 # RUN pip3 install seaborn
 RUN pip3 install -U pip
 RUN pip list
-# RUN pip3 install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
