@@ -33,6 +33,7 @@ RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 RUN echo 'source $HOME/.cargo/env' >> $HOME/.bashrc
 RUN pip3 install setuptools_rust docker-compose
 
+RUN pip3 install -y torch  
 RUN pip3 install -U gsutil pyyaml tqdm cython torchvision   
 RUN apt install -y python3-scipy python3-matplotlib python3-numpy
 RUN pip3 install git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI
