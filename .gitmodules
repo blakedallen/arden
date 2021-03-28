@@ -1,0 +1,3 @@
+[submodule "NXContainers/nxDetector/yolov5"]
+	path = NXContainers/nxDetector/yolov5
+	url = https://github.com/ultralytics/yolov5.git
