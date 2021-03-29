@@ -1,5 +1,7 @@
 import io
 import numpy as np
+import tensorflow
+import keras
 from PIL import Image, ImageOps
 from ISR.models import RDN, RRDN
 import requests
