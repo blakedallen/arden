@@ -104,6 +104,7 @@ def detect(save_img=False):
                 # Write results
                 for *xyxy, conf, cls in reversed(det):
                     for k in range(len(det)):
+                            print("flag")
                             x,y,w,h=int(xyxy[0]), int(xyxy[1]), int(xyxy[2] - xyxy[0]), int(xyxy[3] - xyxy[1])                   
                             img_ = im0.astype(np.uint8)
                             crop_img = img_[y:y+ h, x:x + w]
