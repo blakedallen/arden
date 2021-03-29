@@ -106,7 +106,7 @@ def detect(save_img=False):
                     for k in range(len(det)):
                             print("flag")
                             x,y,w,h=int(xyxy[0]), int(xyxy[1]), int(xyxy[2] - xyxy[0]), int(xyxy[3] - xyxy[1])                   
-                            img_ = im0.astype(np.uint8)
+                            img_ = im0.astype(numpy.uint8)
                             crop_img = img_[y:y+ h, x:x + w]
                             cv2.imshow(str(p), crop_img)
                             cv2.waitKey(1)  
