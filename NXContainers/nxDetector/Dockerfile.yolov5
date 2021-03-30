@@ -46,4 +46,4 @@ RUN pip list
 RUN pip3 install -r requirements.txt
 
 ADD detect_f.py .
-ADD DJI_0225_Trim.mp4 .
+ADD victor_drone_video_trim.mp4 .
