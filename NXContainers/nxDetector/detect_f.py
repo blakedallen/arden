@@ -7,6 +7,8 @@ import cv2
 import torch
 import torch.backends.cudnn as cudnn
 import numpy
+import paho.mqtt.client as mqtt
+import base64
 
 from models.experimental import attempt_load
 from utils.datasets import LoadStreams, LoadImages
@@ -15,7 +17,20 @@ from utils.general import check_img_size, check_requirements, check_imshow, non_
 from utils.plots import plot_one_box
 from utils.torch_utils import select_device, load_classifier, time_synchronized
 
+# publish to MQTT stuff
+print("1")
+LOCAL_MQTT_HOST="brokercontainer" 
+print("2")
+MQTT_PORT=1883
+print("3")
+MQTT_TOPIC="images_topic" 
+print("4")
+local_mqttclient = mqtt.Client()
+print("5")
+local_mqttclient.connect(LOCAL_MQTT_HOST, port=MQTT_PORT, keepalive=60)
+print("6")
 
+# detect stuff
 def detect(save_img=False):
     source, weights, view_img, save_txt, imgsz = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size
     save_img = not opt.nosave and not source.endswith('.txt')  # save inference images
@@ -108,6 +123,10 @@ def detect(save_img=False):
                             x,y,w,h=int(xyxy[0]), int(xyxy[1]), int(xyxy[2] - xyxy[0]), int(xyxy[3] - xyxy[1])                   
                             img_ = im0.astype(numpy.uint8)
                             crop_img = img_[y:y+ h, x:x + w]
+                            print(type(crop_img))
+                            #as_bytes = base64.b64encode(crop_img)
+                            #local_mqttclient.publish(MQTT_TOPIC,as_bytes)
+
                             cv2.imshow(str(p), crop_img)
                             cv2.waitKey(1)  
 
