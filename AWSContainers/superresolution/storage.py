@@ -9,7 +9,7 @@ from PIL import Image
 import io
 
 
-from super import super_res
+from super import super_res_arr
 
 MQTT_BROKER = "mqtt"
 MQTT_RECEIVE = "cloud"
