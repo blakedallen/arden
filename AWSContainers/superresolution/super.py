@@ -23,8 +23,16 @@ def super_res(img, pipeline=["gan", "nc"]):
     """
     arr = np.array(img)
     for key in pipeline:
-        arr = gan_model.predict(arr)
+        model = id2model[key]
+        arr = model.predict(arr)
     return Image.fromarray(arr)
+
+
+def super_res_arr(arr, pipeline=["gan", "nc"]):
+    for key in pipeline:
+        model = id2model[key]
+        arr = model.predict(arr)
+    return arr
 
 
 def decode_image(bytes):
