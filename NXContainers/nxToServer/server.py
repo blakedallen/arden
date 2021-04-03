@@ -4,10 +4,11 @@ import numpy as np
 import paho.mqtt.client as mqtt
 import os
 
-MQTT_BROKER = 'mqtt'
+MQTT_BROKER = 'brokercontainer'
 MQTT_RECEIVE = "image"
 
-MQTT_BROKER_AWS = "54.215.144.161" #IP of AWS EC2 Instance Broker
+#MQTT_BROKER_AWS = "ec2-3-101-26-64.us-west-1.compute.amazonaws.com" #IP of AWS EC2 Instance Broker
+MQTT_BROKER_AWS = "3.101.26.64" #IP of AWS EC2 Instance Broker
 
 
 
