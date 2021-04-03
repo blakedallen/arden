@@ -8,8 +8,7 @@ MQTT_BROKER = 'brokercontainer'
 MQTT_RECEIVE = "image"
 
 #MQTT_BROKER_AWS = "ec2-3-101-26-64.us-west-1.compute.amazonaws.com" #IP of AWS EC2 Instance Broker
-MQTT_BROKER_AWS = "3.101.26.64" #IP of AWS EC2 Instance Broker
-
+MQTT_BROKER_AWS = os.environ["MY_AWS_IP"] #IP of AWS EC2 Instance Broker
 
 
 
