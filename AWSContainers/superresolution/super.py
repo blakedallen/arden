@@ -6,15 +6,16 @@ import requests
 import boto3
 import os
 import time
+from io import BytesIO
 
 #keep tabs on which images have already been ran
 ran = {}
 
 
 #load super resolution models
-model_lg = RDN(weights="psnr-large")
-model_sm = RDN(weights="psnr-small") 
-model_nc = RDN(weights="noise-cancel")
+#model_lg = RDN(weights="psnr-large")
+#model_sm = RDN(weights="psnr-small") 
+#model_nc = RDN(weights="noise-cancel")
 gan_model = RRDN(weights='gans')
 
 ACCESS_KEY = os.environ["ACCESS_KEY"]
@@ -45,10 +46,17 @@ def run_scan(bucket="arden-w251"):
         contents = data['Body']
         im = Image.open(contents)
         arr = np.array(im)
+        print(arr.shape)
         super_arr = super_res_arr(arr)
-        
+        ran[sk] = True
+
+        file_stream = BytesIO() 
+        im = Image.fromarray(super_arr)
+        im.save(file_stream, format='jpeg')
+        #object.put(Body=file_stream.getvalue())
+
         s3.put_object(
-            Body=super_arr,
+            Body=file_stream.getvalue(),
             Bucket=bucket,
             Key="super/{}".format(sk))
         ran[sk] = True
@@ -57,12 +65,13 @@ def run_scan(bucket="arden-w251"):
 
 id2model = {
     "gan":gan_model,
-    "nc":model_nc,
-    "lg":model_lg,
-    "sm":model_sm,
+#    "nc":model_nc,
+#    "lg":model_lg,
+#    "sm":model_sm,
 }
 
-def super_res(img, pipeline=["gan", "nc"]):
+def super_res(img, pipeline=["gan"]):
+
     """ flexible pipeline for chaining multiple models
     """
     arr = np.array(img)
@@ -72,7 +81,7 @@ def super_res(img, pipeline=["gan", "nc"]):
     return Image.fromarray(arr)
 
 
-def super_res_arr(arr, pipeline=["gan", "nc"]):
+def super_res_arr(arr, pipeline=["gan"]):
     for key in pipeline:
         model = id2model[key]
         arr = model.predict(arr)
