@@ -1,3 +1,7 @@
+
+AWSContainers/superresolution/run_super.sh
+AWSContainers/storage/run_storage.sh
+
 *.mp4
 data/
 .DS_Store

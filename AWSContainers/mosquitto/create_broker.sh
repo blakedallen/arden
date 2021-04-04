@@ -1,1 +1,1 @@
-docker build -t mosquitto -f Dockerfile.mosquitto .
+docker build -t mosquitto -f Dockerfile .
