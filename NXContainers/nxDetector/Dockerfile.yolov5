@@ -13,7 +13,6 @@ RUN apt update && apt install -y  libssl-dev
 RUN git clone https://github.com/ultralytics/yolov5
 # RUN pip3 install git+https://github.com/blakedallen/arden.git#subdirectory=yolov5
 WORKDIR /usr/src/app/yolov5
-ADD detect_f.py .
 
 RUN apt-get update
 RUN apt-get install python3-pip idle3 -y
@@ -46,5 +45,10 @@ RUN pip3 install -U pip
 RUN pip list
 RUN pip3 install -r requirements.txt
 
+# get mqtt
+RUN apt-get install -y mosquitto
+RUN apt-get install -y mosquitto-clients
+RUN apt-get install -y python3-paho-mqtt
 
-
+ADD detect_f.py .
+ADD victor_drone_video_trim.mp4 .

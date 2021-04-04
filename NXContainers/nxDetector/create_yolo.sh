@@ -1,0 +1,1 @@
+docker build -t yolov5_final -f Dockerfile.yolov5 .
