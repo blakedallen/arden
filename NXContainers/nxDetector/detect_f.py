@@ -23,7 +23,7 @@ LOCAL_MQTT_HOST="brokercontainer"
 print("2")
 MQTT_PORT=1883
 print("3")
-MQTT_TOPIC="images_topic" 
+MQTT_TOPIC="image" 
 print("4")
 local_mqttclient = mqtt.Client()
 print("5")
@@ -123,11 +123,24 @@ def detect(save_img=False):
                             x,y,w,h=int(xyxy[0]), int(xyxy[1]), int(xyxy[2] - xyxy[0]), int(xyxy[3] - xyxy[1])                   
                             img_ = im0.astype(numpy.uint8)
                             crop_img = img_[y:y+ h, x:x + w]
-                            print(type(crop_img))
+                            #print(type(crop_img))
+
+			    # Encoding to jpeg
+                            #img = (np.random.rand(1,1,3)*255).astype(np.uint8)
+                            #cv2.imshow("test", img)
+                            _, en = cv2.imencode('.jpg', crop_img)
+			    #_, buffer = cv2.imencode('.jpg', crop_img)
+                            # this sends as text...
+                            jpg_as_text = base64.b64encode(en)
+                            # Publish
+                            local_mqttclient.publish(MQTT_TOPIC, jpg_as_text)
+                            print("really?")
+
+
                             #as_bytes = base64.b64encode(crop_img)
                             #local_mqttclient.publish(MQTT_TOPIC,as_bytes)
 
-                            cv2.imshow(str(p), crop_img)
+                            #cv2.imshow(str(p), crop_img)
                             cv2.waitKey(1)  
 
                     if save_txt:  # Write to file
@@ -145,7 +158,7 @@ def detect(save_img=False):
 
             # Stream results
             if view_img:
-                cv2.imshow(str(p), crop_img)#im0)
+                #cv2.imshow(str(p), crop_img)#im0)
                 cv2.waitKey(1)  # 1 millisecond
 
             # Save results (image with detections)
