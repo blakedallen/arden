@@ -6,6 +6,7 @@ RUN apt install -y python3-pip vim-tiny  libopencv-dev
 RUN pip3 install numpy 
 RUN pip3 install paho-mqtt
 RUN pip3 install boto3
+RUN pip3 install opencv-python
 
 RUN apt-get update && apt-get install -y --no-install-recommends bzip2 \
 	g++ \
@@ -24,3 +25,7 @@ RUN python3 -m pip install isr
 WORKDIR /root
 COPY *.py ./
 RUN chmod 700 *.*
+
+ENTRYPOINT python3 storage.py && /bin/bash
+
+
