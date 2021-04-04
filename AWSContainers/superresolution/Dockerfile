@@ -26,6 +26,6 @@ WORKDIR /root
 COPY *.py ./
 RUN chmod 700 *.*
 
-ENTRYPOINT python3 storage.py && /bin/bash
+ENTRYPOINT python3 super.py && /bin/bash
 
 

@@ -1,9 +1,11 @@
+
 import base64
 import cv2 as cv
 import numpy as np
 import paho.mqtt.client as mqtt
 import os
 import boto3
+import time
 
 MQTT_BROKER = "mqtt"
 MQTT_RECEIVE = "cloud"
@@ -33,10 +35,11 @@ def on_message(client, userdata, msg):
     npimg = np.frombuffer(img, dtype=np.uint8)
     # Decode to Original Frame
     frame = cv.imdecode(npimg, 1)
+    img_key = time.time()
     cli.put_object(
        Body=img,
-       Bucket='ardenraw',
-       Key='raw.jpg')
+       Bucket='arden-w251',
+       Key='raw/{}.jpg'.format(img_key))
 
 cli = boto3.client('s3', aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY)
 client = mqtt.Client("p1")
