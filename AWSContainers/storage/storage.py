@@ -7,6 +7,9 @@ import boto3
 
 MQTT_BROKER = "mqtt"
 MQTT_RECEIVE = "cloud"
+ACCESS_KEY = os.environ["ACCESS_KEY"]
+SECRET_KEY = os.environ["SECRET_KEY"]
+
 
 frame = np.zeros((240, 320, 3), np.uint8)
 
@@ -35,7 +38,7 @@ def on_message(client, userdata, msg):
        Bucket='ardenraw',
        Key='raw.jpg')
 
-cli = boto3.client('s3')
+cli = boto3.client('s3', aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY)
 client = mqtt.Client("p1")
 client.on_connect = on_connect
 client.on_message = on_message
