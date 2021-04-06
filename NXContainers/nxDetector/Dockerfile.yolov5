@@ -51,4 +51,4 @@ RUN apt-get install -y mosquitto-clients
 RUN apt-get install -y python3-paho-mqtt
 
 ADD detect_f.py .
-ADD victor_drone_video_trim.mp4 .
+ADD grey_trim_540p.mp4 .
